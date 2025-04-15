@@ -1,4 +1,27 @@
-.idea
+# Node.js dependencies
+node_modules/
 
+# IDE settings
+.idea/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+
+# Environment files
 backend/.env
 frontend/.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
