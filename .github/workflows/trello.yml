@@ -18,4 +18,3 @@ jobs:
           trello-list-name-commit: "Doing"
           trello-list-name-pr-open: "Reviewing"
           trello-list-name-pr-closed: "Testing"
-          trello-card-id-pattern: '#([A-Za-z0-9]+)'
