@@ -10,9 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: dalezak/github-commit-to-trello-card@main
-
         with:
-          
           trello-api-key: ${{ secrets.TRELLO_API_KEY }}
           trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
           trello-board-id: ${{ secrets.TRELLO_BOARD_ID }}
