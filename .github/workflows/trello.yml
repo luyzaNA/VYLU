@@ -1,0 +1,21 @@
+name: Link Commit to Trello
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  attach-to-trello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Attach commit to Trello
+        uses: sandysrc/github-commit-to-trello-card@v2.7.0
+        with:
+          trello-api-key: ${{ secrets.TRELLO_API_KEY }}
+          trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
+          trello-board-id: ${{ secrets.TRELLO_BOARD_ID }}
+          trello-card-action: "Comment"
+          trello-card-id-pattern: "#(\\d+)"
