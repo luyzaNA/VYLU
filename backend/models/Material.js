@@ -4,6 +4,8 @@ const MaterialSchema = new mongoose.Schema({
     materialName: {
         type: String,
         required: true,
+        minlength: 3,
+        maxlength: 100,
     },
     materialComposition: {
         type: Map,
