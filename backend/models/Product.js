@@ -4,15 +4,21 @@ import Review from "./Review";
 const ProductSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: [3, "Name must be at least 3 characters long"],
+        maxlength: [100, "Name cannot exceed 100 characters"]
     },
     price: {
         type: Number,
-        required: true
+        required: true,
+        min: [0, "Price must be a positive number"]
     },
     description: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        minlength: [10, "Description must be at least 10 characters long"]
     },
     photos: {
         type: [String],
