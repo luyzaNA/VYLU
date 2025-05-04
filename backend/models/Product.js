@@ -25,6 +25,10 @@ const ProductSchema = new mongoose.Schema({
     size: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ProductSize'
+    },
+    material: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'MaterialSchema'
     }
 });
 
