@@ -1,9 +1,10 @@
 import {CustomError} from "./custom-error.js";
 
 export class NotAuthorizedError extends CustomError {
-    constructor() {
-        super('Not Authorized');
+    constructor(message = 'Not Authorized') {
+        super(message);
         this.statusCode=401;
     }
 }
+
 export default NotAuthorizedError;
