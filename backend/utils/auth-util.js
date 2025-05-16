@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 export const generateToken = (user) => {
     return jwt.sign(
         {
-            _id: user._id,
+            id: user._id,
             email: user.email,
             role: user.role,
             userName: user.userName

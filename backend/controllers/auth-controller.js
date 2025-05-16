@@ -32,12 +32,12 @@ export const login = async (req, res, next) => {
     try {
         const user = await findUserByEmail(email);
         if (!user) {
-            throw new BadRequestError('Invalid email');
+            throw new BadRequestError('Invalid email or password');
         }
 
         const isMatch = await comparePasswords(password, user.password);
         if (!isMatch) {
-            throw new BadRequestError('Invalid password');
+            throw new BadRequestError('Invalid email or password');
         }
 
         const token = generateToken(user);
