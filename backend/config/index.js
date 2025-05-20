@@ -4,6 +4,7 @@ import auth_router from "../routes/auth-route.js";
 import {errorHandler} from "../middlewares/error-handler.js";
 import {connectDB} from "./database.js";
 import user_router from "../routes/user-route.js";
+import size_router from "../routes/size-route.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use(auth_router);
 app.use(user_router);
+app.use(size_router);
 app.use(errorHandler);
 
 app.use((req, res, next) => {

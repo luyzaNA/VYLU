@@ -13,9 +13,12 @@ const ProductSizeSchema = new mongoose.Schema({
     },
     values: {
         type: Map,
-        of: Number
+        of: Number,
+        required: true,
     }
 });
+
+ProductSizeSchema.index({ type: 1, label: 1 }, { unique: true });
 
 const ProductSize = mongoose.model('ProductSize', ProductSizeSchema);
 
