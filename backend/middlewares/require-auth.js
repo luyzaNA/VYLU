@@ -1,4 +1,4 @@
-import NotAuthorizedError from "../errors/not-authorized.js";
+import {NotAuthorizedError} from "../errors/not-authorized.js";
 
 export const requireAuth = (req, res, next) => {
     if(!req.currentUser){
@@ -7,4 +7,3 @@ export const requireAuth = (req, res, next) => {
     next();
 }
 
-export default requireAuth;

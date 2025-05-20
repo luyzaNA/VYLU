@@ -1,6 +1,6 @@
 import {createUser, findUserByEmail, findUserByUserName} from '../services/user-service.js';
 import {comparePasswords, generateToken, hashPassword} from "../utils/auth-util.js";
-import BadRequestError from "../errors/bad-request.js";
+import {BadRequestError} from "../errors/bad-request.js";
 
 export const register = async (req, res, next) => {
     const { email, password, userName, role } = req.body;

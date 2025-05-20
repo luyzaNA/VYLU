@@ -6,5 +6,3 @@ export class BadRequestError extends CustomError {
         this.statusCode = 400;
     }
 }
-
-export default BadRequestError;

@@ -1,7 +1,7 @@
 import {createProfile, updateProfile, deleteProfile, getProfileById,} from '../services/profile-service.js';
-import BadRequestError from '../errors/bad-request.js';
+import {BadRequestError} from '../errors/bad-request.js';
 import {findUserById, getUserWithProfiles} from '../services/user-service.js';
-import NotAuthorizedError from "../errors/not-authorized.js";
+import {NotAuthorizedError} from "../errors/not-authorized.js";
 
 export const createUserProfile = async (req, res, next) => {
     try {
@@ -68,7 +68,6 @@ export const getUserProfile = async (req, res, next) => {
     }
 };
 
-// 6827931620113191efa2df57
 export const updateUserProfile = async (req, res, next) => {
     try {
         const userId = req.currentUser?.id;

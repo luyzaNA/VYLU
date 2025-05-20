@@ -6,5 +6,3 @@ export class DatabaseConnectionError extends CustomError {
         this.statusCode = 500;
     }
 }
-
-export default DatabaseConnectionError;

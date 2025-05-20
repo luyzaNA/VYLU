@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const profileValidation = [
+export const profileValidator = [
     body('name')
         .isString().withMessage('Name must be a string')
         .isLength({ min: 2, max: 100 }).withMessage('Name must be between 2 and 100 characters'),
