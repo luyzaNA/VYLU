@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import NotAuthorizedError from "../errors/not-authorized.js";
+import {NotAuthorizedError} from "../errors/not-authorized.js";
 
-const currentUser = (req, res, next) => {
+export const currentUser = (req, res, next) => {
     const authHeader = req.headers['authorization'];
 
     if (authHeader && authHeader.startsWith('Bearer ')) {
@@ -17,5 +17,3 @@ const currentUser = (req, res, next) => {
     }
     next();
 };
-
-export default currentUser;

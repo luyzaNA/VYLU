@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import DatabaseConnectionError from "../errors/database-connection.js";
+import {DatabaseConnectionError} from "../errors/database-connection.js";
 
 export const connectDB = async () => {
     try {

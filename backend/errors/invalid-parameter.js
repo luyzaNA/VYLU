@@ -8,4 +8,3 @@ export class InvalidParamError extends CustomError {
     }
 }
 
-export default InvalidParamError;

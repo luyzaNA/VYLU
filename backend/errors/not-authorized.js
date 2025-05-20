@@ -7,4 +7,3 @@ export class NotAuthorizedError extends CustomError {
     }
 }
 
-export default NotAuthorizedError;
