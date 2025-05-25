@@ -1,6 +1,6 @@
 import { body } from 'express-validator';
 
-export const profileValidator = [
+export const profileCreatorValidator = [
     body('name')
         .isString().withMessage('Name must be a string')
         .isLength({ min: 2, max: 100 }).withMessage('Name must be between 2 and 100 characters'),
@@ -46,3 +46,65 @@ export const profileValidator = [
     body('bodyMeasurements.torsoLengthCm')
         .isFloat({ min: 40, max: 100 }).withMessage('torsoLengthCm must be between 40 and 100'),
 ];
+
+export const profileUpdateValidator = [
+    body('name')
+        .optional()
+        .isString().withMessage('Name must be a string')
+        .isLength({ min: 2, max: 100 }).withMessage('Name must be between 2 and 100 characters'),
+
+    body('age')
+        .optional()
+        .isInt({ min: 1, max: 120 }).withMessage('Age must be a number between 1 and 120'),
+
+    body('bodyMeasurements').optional().isObject().withMessage('bodyMeasurements must be an object'),
+
+    body('bodyMeasurements.heightCm')
+        .optional()
+        .isFloat({ min: 50, max: 300 }).withMessage('heightCm must be between 50 and 300'),
+
+    body('bodyMeasurements.chestCm')
+        .optional()
+        .isFloat({ min: 30, max: 200 }).withMessage('chestCm must be between 30 and 200'),
+
+    body('bodyMeasurements.waistCm')
+        .optional()
+        .isFloat({ min: 30, max: 150 }).withMessage('waistCm must be between 30 and 150'),
+
+    body('bodyMeasurements.hipsCm')
+        .optional()
+        .isFloat({ min: 40, max: 200 }).withMessage('hipsCm must be between 40 and 200'),
+
+    body('bodyMeasurements.shoulderWidthCm')
+        .optional()
+        .isFloat({ min: 30, max: 80 }).withMessage('shoulderWidthCm must be between 30 and 80'),
+
+    body('bodyMeasurements.armLengthCm')
+        .optional()
+        .isFloat({ min: 30, max: 100 }).withMessage('armLengthCm must be between 30 and 100'),
+
+    body('bodyMeasurements.inseamCm')
+        .optional()
+        .isFloat({ min: 50, max: 120 }).withMessage('inseamCm must be between 50 and 120'),
+
+    body('bodyMeasurements.thighCm')
+        .optional()
+        .isFloat({ min: 30, max: 100 }).withMessage('thighCm must be between 30 and 100'),
+
+    body('bodyMeasurements.kneeCm')
+        .optional()
+        .isFloat({ min: 20, max: 60 }).withMessage('kneeCm must be between 20 and 60'),
+
+    body('bodyMeasurements.calfCm')
+        .optional()
+        .isFloat({ min: 20, max: 60 }).withMessage('calfCm must be between 20 and 60'),
+
+    body('bodyMeasurements.neckCm')
+        .optional()
+        .isFloat({ min: 25, max: 50 }).withMessage('neckCm must be between 25 and 50'),
+
+    body('bodyMeasurements.torsoLengthCm')
+        .optional()
+        .isFloat({ min: 40, max: 100 }).withMessage('torsoLengthCm must be between 40 and 100'),
+];
+

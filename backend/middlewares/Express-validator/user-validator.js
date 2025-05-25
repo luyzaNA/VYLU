@@ -16,9 +16,3 @@ export const loginValidator = [
     body('password').notEmpty().withMessage('Password is required'),
 ];
 
-
-export const userProfilesValidator = [
-    body('profiles')
-        .isArray().withMessage('Profiles must be an array')
-        .custom((value) => value.every(id => typeof id === 'string')).withMessage('Each profile ID must be a string')
-];
