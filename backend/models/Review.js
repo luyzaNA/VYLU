@@ -14,7 +14,6 @@ const ReviewSchema = new mongoose.Schema({
     },
     photos: {
         type: [String],
-        validate: [arr => arr.length <= 5, "No more than 5 photos allowed"],
         required: false
     },
     userName: {
@@ -26,9 +25,13 @@ const ReviewSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+    averageRating: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 5
     }
 });
 
-const Review = mongoose.model('Review', ReviewSchema);
-
-export default Review;
+export default ReviewSchema;
