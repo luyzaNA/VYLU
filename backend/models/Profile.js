@@ -14,6 +14,10 @@ const ProfileSchema = new mongoose.Schema({
         min: [1, "Age must be at least 1"],
         max: [120, "Age must be realistic"]
     },
+    profilePicture: {
+        type: String,
+        default: "https://vylum.s3.eu-central-1.amazonaws.com/icon-7797704_640.png"
+    },
     updatedAt: {
         type: Date,
         default: Date.now

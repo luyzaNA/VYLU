@@ -2,6 +2,8 @@ import {createProfile, updateProfile, deleteProfile, getProfileById,} from '../s
 import {BadRequestError} from '../errors/bad-request.js';
 import {findUserById, getUserWithProfiles} from '../services/user-service.js';
 import {NotAuthorizedError} from "../errors/not-authorized.js";
+import AWS from "aws-sdk";
+import { v4 as uuidv4 } from "uuid";
 
 export const createUserProfile = async (req, res, next) => {
     try {
@@ -13,7 +15,31 @@ export const createUserProfile = async (req, res, next) => {
         if (!user)
             throw new BadRequestError("User not found");
 
-        const profile = await createProfile(req.body);
+        const s3 = new AWS.S3();
+        let profilePictureUrl;
+
+        if (req.file) {
+            const fileKey = uuidv4();
+            const params = {
+                Bucket: process.env.AWS_S3_BUCKET_NAME,
+                Key: fileKey,
+                Body: req.file.buffer,
+                ACL: "public-read",
+            };
+
+            const uploadedFile = await s3.upload(params).promise();
+            profilePictureUrl = uploadedFile.Location;
+        }
+
+        const profileData = {
+            ...req.body,
+        };
+
+        if (profilePictureUrl) {
+            profileData.profilePicture = profilePictureUrl;
+        }
+
+        const profile = await createProfile(profileData);
 
         user.profiles.push(profile._id);
         await user.save();
@@ -83,7 +109,32 @@ export const updateUserProfile = async (req, res, next) => {
         if (!user.profiles.includes(profileId))
             throw new NotAuthorizedError("You do not own this profile");
 
-        const updatedProfile = await updateProfile(profileId, req.body);
+        let profilePictureUrl;
+
+        if (req.file) {
+            const s3 = new AWS.S3();
+            const fileKey = uuidv4();
+
+            const params = {
+                Bucket: process.env.AWS_S3_BUCKET_NAME,
+                Key: fileKey,
+                Body: req.file.buffer,
+                ACL: "public-read"
+            };
+
+            const uploadedFile = await s3.upload(params).promise();
+            profilePictureUrl = uploadedFile.Location;
+        }
+
+        const updatedData = {
+            ...req.body,
+        };
+
+        if (profilePictureUrl) {
+            updatedData.profilePicture = profilePictureUrl;
+        }
+
+        const updatedProfile = await updateProfile(profileId, updatedData);
         if (!updatedProfile)
             throw new BadRequestError("Profile not found");
 
