@@ -30,7 +30,11 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Profile',
         default: []
-    }]
+    }],
+    userPicture: {
+        type: String,
+        default: "https://vylum.s3.eu-central-1.amazonaws.com/user-solid.svg"
+    },
 });
 
 const User = mongoose.model('User', UserSchema);

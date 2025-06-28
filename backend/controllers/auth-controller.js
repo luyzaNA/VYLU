@@ -17,10 +17,23 @@ export const register = async (req, res, next) => {
         }
 
         const hashedPassword = await hashPassword(password);
-        const newUser = await createUser({ email, password: hashedPassword, userName, role });
+
+        const newUser = await createUser({
+            email,
+            password: hashedPassword,
+            userName,
+            role
+        });
 
         const token = generateToken(newUser);
-        res.status(201).json({ token });
+        res.status(201).json({ token, user: {
+                _id: newUser._id,
+                email: newUser.email,
+                userName: newUser.userName,
+                role: newUser.role,
+                userPicture: newUser.userPicture
+            } });
+        console.log('User registered successfully:', newUser);
     } catch (err) {
         next(err);
     }
@@ -49,6 +62,7 @@ export const login = async (req, res, next) => {
                 email: user.email,
                 userName: user.userName,
                 role: user.role,
+                userPicture: user.userPicture
             }
         });
 
